@@ -1,104 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f7253f107e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3782719189044583"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Salary Management</title>
-  </head>
+</head>
+
 <body>
 
 
-<div ng-app="myApp" ng-controller="myCtrl" style="text-align: center">
-    <form>
-        <div class="card" style="width: 18rem;display: inline-block;vertical-align: top">
-            <img src="../Images/Naby-Final.jpg" class="card-img-top" alt="Naby" height="236.97">
-            <div class="card-body">
-                <h5 class="card-title">Naby Parnis</h5>
-                <p class="card-text">Monthly Salary:</p>
-                <input type="number" ng-model="NabySalary" required>
-            </div>
-        </div>
-    
-   
-        <div class="card" style="width: 18rem;display: inline-block;vertical-align: top;">
-            <img src="../Images/Sig-Done.jpg" class="card-img-top" height="236.97" alt="Sigmond">
-            <div class="card-body">
-                <h5 class="card-title">Sigmond Gatt</h5>
-                <p class="card-text">Monthly Salary:</p>
-                <input type="number" ng-model="SigSalary" required>
-            </div>
-        </div>
-    <div style="text-align: center;margin-top: 10px">
-        <input type="submit" class="btn btn-primary" value="Calculate!" ng-click="Calculate()">
-    </div>
-    </form>
-    
-    <div ng-if="ShowCalculations" style="margin-top: 20px">
-        <div class="card" style="width: 18rem;display: inline-block">
-              <div class="card-header">
-                Naby Parnis
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Everything : &euro; {{nabyEverything}}</li>
-                <li class="list-group-item">Savings: &euro; {{nabySavings}}</li>
-                <li class="list-group-item">Left: &euro; {{nayMoneyLeft}}</li>
-              </ul>
-        </div>
-        <div class="card" style="width: 18rem;display: inline-block">
-              <div class="card-header">
-                Sigmond Gatt
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Everything : &euro; {{sigEverything}}</li>
-                <li class="list-group-item">Savings:&euro; {{sigSavings}}</li>
-                <li class="list-group-item">Left: &euro; {{sigMoneyLeft}}</li>
-              </ul>
-        </div>
-    
-    </div>
-    
-    
-</div>
+    <div ng-app="myApp" ng-controller="myCtrl" style="text-align: center">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+                        <h2 id="heading">4 Bank Accounts Theory</h2>
+                        <p>Fill all the details to see how the bills should be seperated into different accounts.</p>
+                        <form id="msform">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="personal"><strong>Personal</strong></li>
+                                <li id="budgeting"><strong>Budgeting</strong></li>
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div> <br> <!-- fieldsets -->
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Member's Monthly Salary</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 1 - 3</h2>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="left" style="flex: 1;justify-content: center;align-content: center;text-align: center;align-items: center;padding:15px">
+                                            <img style="flex: 1;border-radius: 50%;height: 100px;width: 100px;" src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" />
+                                            <br><input type="text" tabindex="1" style="border:none;display: inline;font-family: inherit;font-size: inherit;padding: none;width: auto;background-color: transparent" class="fieldlabels" ng-model="mem1Name">
+                                            <input class="form-control" tabindex="3" ng-model="member1Salary" type="number" step=".01" style="width:100%" name="member1Salary" placeholder="Enter Salary" required>
+                                        </div>
+                                        <div class="right" style="flex: 1;justify-content: center;align-content: center;text-align: center;align-items: center;padding:15px">
+                                            <img style="flex: 1;border-radius: 50%;height: 100px;width: 100px;" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" />
+                                            <br><input type="text" tabindex="2  " style="border:none;display: inline;font-family: inherit;font-size: inherit;padding: none;width: auto;background-color: transparent" class="fieldlabels" ng-model="mem2Name">
+                                            <input class="form-control" tabindex="4" ng-model="member2Salary" type="number" step=".01" style="width:100%" name="member1Salary" placeholder="Enter Salary" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="next" class="next action-button" value="Next" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Budgeting</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 2 - 3</h2>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels">How much money you would like to save for this month?</label>
+                                    <div style="display: flex"><input type="number" step="0.01" name="savingAccount" ng-model="savingAccount" placeholder="Enter amount to save together" />
+                                        <div style="margin-left: 5px;" class="popup" onclick="popPopup1()"><span style="border-radius: 50%;" class="badge badge-secondary">?</span>
+                                            <span class="popuptext" id="myPopup" style="text-align: center;">This amount will be in the saving account and can be used to spend them together like vacations.</span>
+                                        </div>
+                                    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-<script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-    console.log("hellloo!! ?? ");
-    $scope.ShowCalculations = false;
-    $scope.Calculate = function()
-    {
-        var totalSalaryAmount = $scope.SigSalary + $scope.NabySalary;
-        var sigPercentage = ((100 * $scope.SigSalary) / totalSalaryAmount).toFixed(2);
-        var nayPercentage = ((100 * $scope.NabySalary) / totalSalaryAmount).toFixed(2);
-        console.log("sigPercentage",sigPercentage)
-        console.log("nayPercentage",nayPercentage)
-        $scope.Everything = 800;
-        $scope.Savings = 1000;
-        
-        $scope.nabyEverything = ((nayPercentage / 100) * $scope.Everything).toFixed(2);
-        $scope.sigEverything = ((sigPercentage / 100) * $scope.Everything).toFixed(2);
-        $scope.nabySavings = ((nayPercentage / 100) * $scope.Savings).toFixed(2);
-        $scope.sigSavings = ((sigPercentage / 100) * $scope.Savings).toFixed(2);
-        
-        $scope.nayMoneyLeft = ($scope.NabySalary - $scope.nabyEverything - $scope.nabySavings).toFixed(2);
-        $scope.sigMoneyLeft = ($scope.SigSalary - $scope.sigEverything - $scope.sigSavings).toFixed(2);
-        
-        
-        $scope.ShowCalculations = !$scope.ShowCalculations
-       
-    }
-    
-});
-</script>
+
+
+                                    <label class="fieldlabels">What are your monthly living expenses?</label>
+                                    <div style="display: flex"><input type="number" step="0.01" name="expensesAccount" ng-model="expensesAccount" placeholder="Enter Amount for your monthly expense" />
+                                        <div style="margin-left: 5px;" class="popup" onclick="popPopup2()"><span style="border-radius: 50%;" class="badge badge-secondary">?</span>
+                                            <span class="popuptext" id="myPopup2" style="text-align: center;">These expenses will be spend on food, living, petrol, electricity/water bills etc.</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <input type="button" name="next" class="next action-button" ng-click="Calculate()" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Finish:</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 3 - 3</h2>
+                                        </div>
+                                    </div> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div style="display: flex">
+                                            <div>
+                                                
+                                                <table class="table table-bordered">
+                                                    <thead style="background-color: #673AB7;color: white;">
+                                                        <tr>
+                                                            <th scope="col" colspan="2">{{mem1Name}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Salary</th>
+                                                            <td>{{member1Salary}}</td>
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Joint Saving Account</th>
+                                                            <td>{{mem1Savings}}</td>
+                                                           
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Join Expenses Account</th>
+                                                            <td>{{mem1Expenses}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Personal Account</th>
+                                                            <td>{{mem1MoneyLeft}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div>
+                                               <table class="table table-bordered" style="margin-left: 25px;">
+                                                    <thead style="background-color: #673AB7;color: white;">
+                                                        <tr>
+                                                            <th scope="col" colspan="2">{{mem2Name}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Salary</th>
+                                                            <td>{{member2Salary}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Joint Saving Account</th>
+                                                            <td>{{mem2Savings}}</td>
+                                                           
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Join Expenses Account</th>
+                                                            <td>{{mem2Expenses}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Personal Account</th>
+                                                            <td>{{mem2MoneyLeft}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels"> if you have a suggestion, feel free to contact me on <a href="mailto: gattsigmond@gmail.com">gattsigmond@gmail.com</a></label>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.mem1Name = "Family Member 1"
+            $scope.mem2Name = "Family Member 2"
+
+            $scope.Calculate = function() {
+                console.log("hellooo");
+                var totalSalaryAmount = $scope.member1Salary + $scope.member2Salary;
+                var mem1Percentage = ((100 * $scope.member1Salary) / totalSalaryAmount).toFixed(2);
+                var mem2Percentage = ((100 * $scope.member2Salary) / totalSalaryAmount).toFixed(2);
+                console.log("mem1Percentage", mem1Percentage)
+                console.log("mem2Percentage", mem2Percentage)
+
+                $scope.mem2Expenses = ((mem2Percentage / 100) * $scope.expensesAccount).toFixed(2);
+                $scope.mem1Expenses = ((mem1Percentage / 100) * $scope.expensesAccount).toFixed(2);
+                $scope.mem2Savings = ((mem2Percentage / 100) * $scope.savingAccount).toFixed(2);
+                $scope.mem1Savings = ((mem1Percentage / 100) * $scope.savingAccount).toFixed(2);
+                $scope.mem2MoneyLeft = ($scope.member2Salary - $scope.mem2Expenses - $scope.mem2Savings).toFixed(2);
+                $scope.mem1MoneyLeft = ($scope.member1Salary - $scope.mem1Expenses - $scope.mem1Savings).toFixed(2);
+                console.log("mem2Expenses", $scope.mem2Expenses);
+                console.log("mem2Savings", $scope.mem2Savings);
+                console.log("mem2MoneyLeft", $scope.mem2MoneyLeft);
+
+
+                console.log("mem1Expenses", $scope.mem1Expenses);
+                console.log("mem1Savings", $scope.mem1Savings);
+                console.log("mem1MoneyLeft", $scope.mem1MoneyLeft);
+            }
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+            var current = 1;
+            var steps = $("fieldset").length;
+
+            setProgressBar(current);
+
+            $(".next").click(function() {
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({
+                    opacity: 0
+                }, {
+                    step: function(now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({
+                            'opacity': opacity
+                        });
+                    },
+                    duration: 500
+                });
+                setProgressBar(++current);
+            });
+
+            $(".previous").click(function() {
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                console.log(current_fs);
+                console.log(previous_fs);
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+
+                //hide the current fieldset with style
+                current_fs.animate({
+                    opacity: 0
+                }, {
+                    step: function(now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({
+                            'opacity': opacity
+                        });
+                    },
+                    duration: 500
+                });
+                setProgressBar(--current);
+            });
+
+            function setProgressBar(curStep) {
+                var percent = parseFloat(100 / steps) * curStep;
+                percent = percent.toFixed();
+                $(".progress-bar")
+                    .css("width", percent + "%")
+            }
+        });
+
+        function popPopup1() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
+
+        function popPopup2() {
+            var popup = document.getElementById("myPopup2");
+            popup.classList.toggle("show");
+        }
+    </script>
 
 </body>
-</html>
-
+<footer class="fieldlabels" style="text-align: center;position: relative;bottom: 0;">
+    Create By <a href="https://www.linkedin.com/in/sigmondgatt/">Sigmond Gatt</a></footer></html>
