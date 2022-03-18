@@ -123,7 +123,7 @@ p {
 }
 
 .steps {
-    font-size: 25px;
+    font-size: 24px;
     color: gray;
     margin-bottom: 10px;
     font-weight: normal;
@@ -206,9 +206,6 @@ p {
     background-color: #673AB7
 }
 
-
-/*help button*/
-/* Popup container - can be anything you want */
 .popup {
   position: relative;
   display: inline-block;
