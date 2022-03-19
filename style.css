@@ -17,7 +17,7 @@ body
         rgba(214, 213, 210,0.45),
         rgba(214, 213, 210,0.45)
     ),url(Images/Background.png);
-    background-size: contain;
+    background-size: cover;
 
 }
 #heading {
