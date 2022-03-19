@@ -11,6 +11,15 @@ p {
     color: grey
 }
 
+body
+{
+     background-image: linear-gradient(
+        rgba(214, 213, 210,0.45),
+        rgba(214, 213, 210,0.45)
+    ),url(Images/Background.png);
+    background-size: cover;
+
+}
 #heading {
     text-transform: uppercase;
     color: #673AB7;
@@ -123,7 +132,7 @@ p {
 }
 
 .steps {
-    font-size: 25px;
+    font-size: 24px;
     color: gray;
     margin-bottom: 10px;
     font-weight: normal;
@@ -206,9 +215,6 @@ p {
     background-color: #673AB7
 }
 
-
-/*help button*/
-/* Popup container - can be anything you want */
 .popup {
   position: relative;
   display: inline-block;
