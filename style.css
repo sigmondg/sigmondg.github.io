@@ -10,6 +10,17 @@ html {
 p {
     color: grey
 }
+@media screen and (min-aspect-ratio: 1/1){
+    body
+    {
+         background-image: linear-gradient(
+            rgba(214, 213, 210,0.45),
+            rgba(214, 213, 210,0.45)
+        ),url(Images/Background.png);
+        background-size: cover;
+    
+    } 
+}
 
 body
 {
