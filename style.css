@@ -11,6 +11,15 @@ p {
     color: grey
 }
 
+body
+{
+     background-image: linear-gradient(
+        rgba(214, 213, 210,0.45),
+        rgba(214, 213, 210,0.45)
+    ),url(Images/Background.png);
+    background-size: contain;
+
+}
 #heading {
     text-transform: uppercase;
     color: #673AB7;
