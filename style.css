@@ -29,7 +29,9 @@ body
         rgba(214, 213, 210,0.45)
     ),url(Images/Background.png);
     background-size: cover;
-
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 #heading {
     text-transform: uppercase;
