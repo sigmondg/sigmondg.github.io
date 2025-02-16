@@ -47,32 +47,52 @@
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                             </div> <br> <!-- fieldsets -->
                             <fieldset>
-                                
-                                    <div class="form-card">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h2 class="fs-title">Monthly Salary</h2>
-                                            </div>
-                                            <div class="col-6">
-                                                <h2 class="steps">Step 1 - 3</h2>
-                                            </div>
-                                        </div>
-                                        <div class="row col-12" style="display: flex; justify-content: space-around;">
-                                            <div class="left" style="flex: 1;justify-content: center;align-content: center;text-align: center;align-items: center;padding:15px">
-                                                <img style="flex: 1;height: 100px;width: 100px;" src="/Images/Avatar.png" alt="Avatar" />
-                                                <br><input id="mem1Name" type="text" tabindex="1" style="border:none;display: inline;font-family: inherit;font-size: inherit;padding: none;width: auto;background-color: transparent;margin-bottom: 0px" class="fieldlabels" ng-model="mem1Name">
-                                                <input class="col-8 form-control" id="mem1Salary" tabindex="4" ng-model="member1Salary" style="margin: auto;text-align: center" type="number" step=".01" name="member1Salary" placeholder="Enter Salary" required>
-                                            </div>
-                                            <div class="right" style="flex: 1;justify-content: center;align-content: center;text-align: center;align-items: center;padding:15px">
-                                                <img style="flex: 1;;height: 100px;width: 100px;" src="/Images/Avatar.png" alt="Avatar" />
-                                                <br><input id="mem2Name" type="text" tabindex="2" style="border:none;display: inline;font-family: inherit;font-size: inherit;padding: none;background-color: transparent;margin-bottom: 0px" class="fieldlabels" ng-model="mem2Name">
-                                                <input class="col-8 form-control" id="mem2Salary" tabindex="4" ng-model="member2Salary" style="margin: auto;text-align: center" type="number" step=".01" name="member2Salary" placeholder="Enter Salary" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="button" name="next" class="next action-button" value="Next" />
-                             
-                            </fieldset>
+    <div class="form-card">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="fs-title">Monthly Salary</h2>
+            </div>
+            <div class="col-6">
+                <h2 class="steps">Step 1 - 3</h2>
+            </div>
+        </div>
+        <div class="row col-12" style="display: flex; justify-content: space-around;">
+            <div class="left" style="flex: 1;justify-content: center;align-content: center;text-align: center;align-items: center;padding:15px">
+                <img style="flex: 1;height: 100px;width: 100px;" src="/Images/Avatar.png" alt="Avatar" />
+                <br><input id="mem1Name" type="text" tabindex="1" style="border:none;display: inline;font-family: inherit;font-size: inherit;padding: none;width: auto;background-color: transparent;margin-bottom: 0px" class="fieldlabels" ng-model="mem1Name">
+                <input class="col-8 form-control" id="mem1Salary" tabindex="4" ng-model="member1Salary" style="margin: auto;text-align: center" type="number" step=".01" name="member1Salary" placeholder="Enter Salary" required>
+            </div>
+            <div class="right" style="flex: 1;justify-content: center;align-content: center;text-align: center;align-items: center;padding:15px">
+                <img style="flex: 1;;height: 100px;width: 100px;" src="/Images/Avatar.png" alt="Avatar" />
+                <br><input id="mem2Name" type="text" tabindex="2" style="border:none;display: inline;font-family: inherit;font-size: inherit;padding: none;background-color: transparent;margin-bottom: 0px" class="fieldlabels" ng-model="mem2Name">
+                <input class="col-8 form-control" id="mem2Salary" tabindex="4" ng-model="member2Salary" style="margin: auto;text-align: center" type="number" step=".01" name="member2Salary" placeholder="Enter Salary" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Split By Form Card -->
+    <div class="form-card" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="fs-title">Split By</h2>
+            </div>
+        </div>
+        <div class="row col-12" style="display: flex; justify-content: space-around; align-items: center;">
+            <div class="col-6" style="text-align: center;">
+                <label>
+                    <input type="checkbox" ng-model="splitByHalf" ng-change="updateSplitMethod()" checked> Split 50/50
+                </label>
+            </div>
+            <div class="col-6" style="text-align: center;">
+                <label>
+                    <input type="checkbox" ng-model="splitByPercentage" ng-change="updateSplitMethod()"> Split by %
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
                             <fieldset>
                                 <div class="form-card">
                                     <div class="row">
@@ -200,25 +220,45 @@
 </script>
     <script>
         var app = angular.module('myApp', []);
-        app.controller('myCtrl', function($scope) {
-            $scope.mem1Name = "Family Member 1"
-            $scope.mem2Name = "Family Member 2"
+app.controller('myCtrl', function($scope) {
+    $scope.mem1Name = "Family Member 1";
+    $scope.mem2Name = "Family Member 2";
+    $scope.splitByHalf = false;
+    $scope.splitByPercentage = true;
 
-            $scope.Calculate = function() {
+    $scope.updateSplitMethod = function() {
+        if ($scope.splitByHalf) {
+            $scope.splitByPercentage = false;
+        } else if ($scope.splitByPercentage) {
+            $scope.splitByHalf = false;
+        }
+    };
 
-                var totalSalaryAmount = $scope.member1Salary + $scope.member2Salary;
-                var mem1Percentage = ((100 * $scope.member1Salary) / totalSalaryAmount).toFixed(2);
-                var mem2Percentage = ((100 * $scope.member2Salary) / totalSalaryAmount).toFixed(2);
+    $scope.Calculate = function() {
+        var totalSalaryAmount = $scope.member1Salary + $scope.member2Salary;
+        var mem1Percentage = ((100 * $scope.member1Salary) / totalSalaryAmount).toFixed(2);
+        var mem2Percentage = ((100 * $scope.member2Salary) / totalSalaryAmount).toFixed(2);
 
-                $scope.mem2Expenses = ((mem2Percentage / 100) * $scope.expensesAccount).toFixed(2);
-                $scope.mem1Expenses = ((mem1Percentage / 100) * $scope.expensesAccount).toFixed(2);
-                $scope.mem2Savings = ((mem2Percentage / 100) * $scope.savingAccount).toFixed(2);
-                $scope.mem1Savings = ((mem1Percentage / 100) * $scope.savingAccount).toFixed(2);
-                $scope.mem2MoneyLeft = ($scope.member2Salary - $scope.mem2Expenses - $scope.mem2Savings).toFixed(2);
-                $scope.mem1MoneyLeft = ($scope.member1Salary - $scope.mem1Expenses - $scope.mem1Savings).toFixed(2);
-            }
+        $scope.mem2Expenses = ((mem2Percentage / 100) * $scope.expensesAccount).toFixed(2);
+        $scope.mem1Expenses = ((mem1Percentage / 100) * $scope.expensesAccount).toFixed(2);
+        $scope.mem2Savings = ((mem2Percentage / 100) * $scope.savingAccount).toFixed(2);
+        $scope.mem1Savings = ((mem1Percentage / 100) * $scope.savingAccount).toFixed(2);
 
-        });
+        var mem1TotalContribution = parseFloat($scope.mem1Expenses) + parseFloat($scope.mem1Savings);
+        var mem2TotalContribution = parseFloat($scope.mem2Expenses) + parseFloat($scope.mem2Savings);
+
+        if ($scope.splitByHalf) {
+            // Split the remaining money by half
+            var remainingMoney = (totalSalaryAmount - $scope.expensesAccount - $scope.savingAccount) / 2;
+            $scope.mem1MoneyLeft = remainingMoney.toFixed(2);
+            $scope.mem2MoneyLeft = remainingMoney.toFixed(2);
+        } else if ($scope.splitByPercentage) {
+            // Split the remaining money by percentage
+            $scope.mem1MoneyLeft = ($scope.member1Salary - mem1TotalContribution).toFixed(2);
+            $scope.mem2MoneyLeft = ($scope.member2Salary - mem2TotalContribution).toFixed(2);
+        }
+    };
+});
     </script>
 
     <script type="text/javascript">
@@ -356,5 +396,6 @@
     </script>
 
 </body>
+</html>
 <footer style="width: 100%; text-align: center;position: fixed;bottom: 0;">
-    Create By <a href="https://www.linkedin.com/in/sigmondgatt/">Sigmond Gatt</a></footer></html>
+    Create By <a href="https://www.linkedin.com/in/sigmondgatt/">Sigmond Gatt</a></footer>
